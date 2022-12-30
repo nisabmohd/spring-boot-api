@@ -2,6 +2,9 @@ package com.firstspring.learnspring.controller;
 
 import com.firstspring.learnspring.entity.Department;
 import com.firstspring.learnspring.service.DepartmentService;
+import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,9 +15,10 @@ public class DepartmentController {
 
     @Autowired
     private DepartmentService service;
-
+    private final Logger LOGGER= LoggerFactory.getLogger(Department.class);
     @PostMapping("/departments")
-    public Department saveDepartment(@RequestBody Department department){
+    public Department saveDepartment(@Valid @RequestBody Department department){
+        LOGGER.info(department.toString());
         return service.saveDepartment(department);
     }
 
