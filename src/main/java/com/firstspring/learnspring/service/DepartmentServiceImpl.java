@@ -1,9 +1,11 @@
 package com.firstspring.learnspring.service;
 
 import com.firstspring.learnspring.entity.Department;
+import com.firstspring.learnspring.error.DepartmentNotFoundException;
 import com.firstspring.learnspring.repository.DepartmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -23,8 +25,8 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public Department getDepartment(Long departmentId) {
-        return departmentRepository.findById(departmentId).orElse(null);
+    public Department getDepartment(Long departmentId) throws Exception {
+        return departmentRepository.findById(departmentId).orElseThrow(() -> new DepartmentNotFoundException("No such department found"));
     }
 
     @Override

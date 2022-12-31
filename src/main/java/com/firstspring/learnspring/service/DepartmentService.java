@@ -9,7 +9,7 @@ public interface DepartmentService {
 
     List<Department> getDepartments();
 
-    Department getDepartment(Long departmentId);
+    Department getDepartment(Long departmentId) throws Exception;
 
     String deleteDepartment(Long id);
 
